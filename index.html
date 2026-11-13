@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>English Test – Touchstone Units 7–12</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
+:root{--navy:#102a43;--blue:#2463eb;--blue2:#1749b5;--ink:#243447;--muted:#66788a;--line:#e3eaf2;--paper:#f4f7fb;--green:#16794b;--greenbg:#eaf8f0;--red:#b42332;--redbg:#fff0f1;--amber:#9a6700}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 10% 0%,#eaf1ff 0,transparent 34%),var(--paper);color:var(--ink);font-family:'DM Sans',Arial,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:30px 20px 60px}
+header{background:linear-gradient(130deg,#102a43,#174b86 65%,#2867ad);color:#fff;border-radius:22px;padding:30px;box-shadow:0 16px 40px #102a4328;margin-bottom:22px;position:relative;overflow:hidden}
+header:after{content:"";position:absolute;width:260px;height:260px;border:1px solid #ffffff20;border-radius:50%;right:-90px;top:-130px;box-shadow:0 0 0 28px #ffffff0a,0 0 0 58px #ffffff08}
+header h1{font:800 clamp(1.6rem,4vw,2.25rem) 'Manrope',sans-serif;letter-spacing:-.04em;margin:0 0 7px}
+header>p{margin:8px 0 14px;color:#e6f0ff}
+.meta{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}
+.meta span{background:#ffffff18;border:1px solid #ffffff30;border-radius:999px;padding:8px 12px;font-size:.88rem}
+.timer{font-weight:700;color:#fff!important;background:#a52d3c!important;border-color:#ffffff38!important}
+.student-line{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:18px 0 10px}
+input[type=text]{padding:12px 14px;border:1px solid #cbd7e5;border-radius:10px;font:inherit;min-width:min(300px,100%);outline:none}
+input[type=text]:focus{border-color:#82aaff;box-shadow:0 0 0 3px #8db4ff35}
+.small{font-size:.9rem;color:#66788a}
+header .small{color:#dce9f8}
+.part{background:#fff;border:1px solid #e5ebf3;border-radius:18px;padding:24px;margin:0 0 18px;box-shadow:0 5px 18px #18324b0b}
+h2{font:800 1.12rem 'Manrope',sans-serif;color:var(--navy);margin:0 0 8px;padding-bottom:13px;border-bottom:1px solid var(--line)}
+.instructions{color:var(--muted);margin:0 0 14px;font-size:.95rem}
+.question{padding:16px 0;border-bottom:1px solid #edf1f6;transition:background .2s}
+.question:last-child{border-bottom:0}
+.question p{line-height:1.55;margin:0 0 11px;font-weight:600}
+.question label{display:flex;align-items:flex-start;gap:9px;padding:10px 12px;margin:5px 0;border:1px solid #e7edf4;border-radius:10px;cursor:pointer;transition:.15s}
+.question label:hover{background:#f5f8ff;border-color:#b9cdfa}
+.question input[type=radio]{margin-top:3px;accent-color:var(--blue);flex:0 0 auto}
+.question select{padding:10px 12px;border:1px solid #cbd7e5;border-radius:9px;font:inherit;max-width:100%;background:white}
+.reading{background:#f2f7ff;border:1px solid #dce8fb;border-left:4px solid var(--blue);padding:16px 18px;margin:15px 0 18px;border-radius:12px;line-height:1.7;color:#34465b}
+.reading b{color:#174b86}
+.wordbank{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:14px 0;padding:14px;background:#f7f9fc;border:1px solid var(--line);border-radius:12px}
+.wordbank div{padding:7px 9px;background:white;border:1px solid #e5ebf3;border-radius:8px;font-size:.92rem}
+.example{padding:10px 12px;background:#eef5ff;border:1px solid #d5e5ff;border-radius:9px;color:#174b86;margin:12px 0}
+.controls{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:#fff;padding:17px 20px;border:1px solid var(--line);border-radius:16px;box-shadow:0 5px 18px #18324b0b}
+button{border:0;border-radius:11px;padding:13px 20px;font:700 .95rem 'DM Sans',sans-serif;cursor:pointer;background:var(--blue);color:white;box-shadow:0 5px 12px #2463eb30;transition:.15s}
+button:hover{background:var(--blue2);transform:translateY(-1px)}
+button:disabled{opacity:.55;cursor:not-allowed;transform:none}
+#submit{background:#16794b;box-shadow:0 5px 12px #16794b2b}
+#submit:hover{background:#11633d}
+.result{display:none;background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;margin-top:20px;box-shadow:0 8px 25px #18324b10}
+.result h2{font-size:1.3rem}
+.score-panel{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:16px 0}
+.score{font:800 2.7rem 'Manrope',sans-serif;color:var(--blue)}
+.score-meta{color:var(--muted);line-height:1.5}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
+.stat{border-radius:12px;padding:13px 15px;background:#f5f8fc;border:1px solid var(--line)}
+.stat strong{display:block;font:800 1.3rem 'Manrope',sans-serif;color:var(--navy)}
+.stat span{font-size:.83rem;color:var(--muted)}
+.review-title{margin:28px 0 12px;font:800 1.1rem 'Manrope',sans-serif;color:var(--navy)}
+.review-item{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0}
+.review-item.correct{background:var(--greenbg);border-color:#b6e2c8}
+.review-item.incorrect{background:var(--redbg);border-color:#f0c2c7}
+.review-item.unanswered{background:#fff8e8;border-color:#f1dfad}
+.review-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.status{font-size:.78rem;font-weight:700;padding:5px 9px;border-radius:999px;background:#fff}
+.correct .status{color:var(--green)}.incorrect .status{color:var(--red)}.unanswered .status{color:var(--amber)}
+.review-item p{margin:5px 0;line-height:1.5}
+.answer-correct{color:var(--green);font-weight:700}
+.answer-wrong{color:var(--red);font-weight:700}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.secondary{background:#eaf0f8;color:#173b62;box-shadow:none}
+.secondary:hover{background:#dce7f5}
+.option-correct{background:var(--greenbg)!important;border-color:#80c99d!important;color:#145c37!important}
+.option-wrong{background:var(--redbg)!important;border-color:#e59aa3!important;color:#92202c!important}
+.feedback{margin-top:9px;padding:10px 12px;border-radius:9px;line-height:1.5}
+.feedback.good{background:var(--greenbg);color:#145c37}
+.feedback.bad{background:#fff6e8;color:#805400}
+@media(max-width:600px){.wrap{padding:14px 11px 36px}header,.part,.result{padding:18px;border-radius:15px}.stats{grid-template-columns:1fr}.wordbank{grid-template-columns:repeat(2,minmax(0,1fr))}.meta span{font-size:.8rem}}
+@media print{body{background:white}.wrap{max-width:none;padding:0}header{background:#fff;color:#111;box-shadow:none;border:1px solid #ccc}header>p,header .small{color:#333}.meta span{background:#fff;color:#222;border:1px solid #ccc}.timer,.controls,.actions{display:none!important}.part,.result{box-shadow:none;break-inside:avoid}.result{display:block!important}}
+</style>
+
+</head><body><div class="wrap">
+<header>
+<h1>ENGLISH TEST – SABER PRO STYLE</h1>
+<p><b>Touchstone – Units 7 to 12</b></p>
+<div class="meta"><span>45 questions</span><span>Time limit: 60 minutes</span><span>Score: 1.0–5.0</span><span class="timer">Time remaining: <span id="time">60:00</span></span></div>
+<div class="student-line"><label for="student"><b>Student name:</b></label><input id="student" type="text" placeholder="Enter your full name"></div>
+<p class="small">Read each question carefully. Select or match one answer for each item. Your grade and the corrections will appear in the test when you submit or when time runs out.</p>
+</header>
+<section class="part"><h2>PART 1. LEXICAL COMPETENCE</h2><p class="instructions">Match each description (1–5) with a word from the word bank (A–H). Three words are extra. Example: H.</p>
+<div class="wordbank"><div><b>A.</b> scarf</div><div><b>B.</b> humid</div><div><b>C.</b> sneakers</div><div><b>D.</b> museum</div><div><b>E.</b> cloudy</div><div><b>F.</b> souvenir</div><div><b>G.</b> crowded</div><div><b>H.</b> freezing</div></div>
+<div class="example"><b>Example (solved):</b><p style="margin:8px 0 5px"><b>Description:</b> The weather is very cold, and there is ice on the streets. It is _____.</p><p style="margin:0"><b>Correct answer:</b> H. freezing</p></div>
+<div class="question" data-q="1" data-answer="2" data-explanation="Choose the word whose meaning matches the description."><p><b>1.</b> You wear these comfortable shoes when you go running.</p><select name="q1"><option value="">Choose A–H</option>
+<option value="0">A. scarf</option>
+<option value="1">B. humid</option>
+<option value="2">C. sneakers</option>
+<option value="3">D. museum</option>
+<option value="4">E. cloudy</option>
+<option value="5">F. souvenir</option>
+<option value="6">G. crowded</option>
+<option value="7">H. freezing</option>
+</select><div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="2" data-answer="3" data-explanation="Choose the word whose meaning matches the description."><p><b>2.</b> A place where you can see objects from history or art.</p><select name="q2"><option value="">Choose A–H</option>
+<option value="0">A. scarf</option>
+<option value="1">B. humid</option>
+<option value="2">C. sneakers</option>
+<option value="3">D. museum</option>
+<option value="4">E. cloudy</option>
+<option value="5">F. souvenir</option>
+<option value="6">G. crowded</option>
+<option value="7">H. freezing</option>
+</select><div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="3" data-answer="5" data-explanation="Choose the word whose meaning matches the description."><p><b>3.</b> A small object that you buy to remember a trip.</p><select name="q3"><option value="">Choose A–H</option>
+<option value="0">A. scarf</option>
+<option value="1">B. humid</option>
+<option value="2">C. sneakers</option>
+<option value="3">D. museum</option>
+<option value="4">E. cloudy</option>
+<option value="5">F. souvenir</option>
+<option value="6">G. crowded</option>
+<option value="7">H. freezing</option>
+</select><div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="4" data-answer="6" data-explanation="Choose the word whose meaning matches the description."><p><b>4.</b> A place or event with many people.</p><select name="q4"><option value="">Choose A–H</option>
+<option value="0">A. scarf</option>
+<option value="1">B. humid</option>
+<option value="2">C. sneakers</option>
+<option value="3">D. museum</option>
+<option value="4">E. cloudy</option>
+<option value="5">F. souvenir</option>
+<option value="6">G. crowded</option>
+<option value="7">H. freezing</option>
+</select><div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="5" data-answer="1" data-explanation="Choose the word whose meaning matches the description."><p><b>5.</b> Weather that has a lot of water in the air.</p><select name="q5"><option value="">Choose A–H</option>
+<option value="0">A. scarf</option>
+<option value="1">B. humid</option>
+<option value="2">C. sneakers</option>
+<option value="3">D. museum</option>
+<option value="4">E. cloudy</option>
+<option value="5">F. souvenir</option>
+<option value="6">G. crowded</option>
+<option value="7">H. freezing</option>
+</select><div class="inline-feedback" aria-live="polite"></div></div>
+</section>
+<section class="part"><h2>PART 2. PRAGMATIC COMPETENCE</h2><p class="instructions">Read each notice or sign. Choose the place where you would most likely see it.</p>
+<div class="question" data-q="6" data-answer="0" data-explanation="The notice gives information that is typical of this place."><p><b>6.</b> NOTICE: PLEASE DO NOT FEED THE ANIMALS. Keep the area clean.</p>
+<label><input type="radio" name="q6" value="0"> <span>A. At a zoo</span></label>
+<label><input type="radio" name="q6" value="1"> <span>B. At a clothing store</span></label>
+<label><input type="radio" name="q6" value="2"> <span>C. At a restaurant</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="7" data-answer="1" data-explanation="The notice gives information that is typical of this place."><p><b>7.</b> SALE! ALL JACKETS 30% OFF THIS WEEK.</p>
+<label><input type="radio" name="q7" value="0"> <span>A. At a bus station</span></label>
+<label><input type="radio" name="q7" value="1"> <span>B. At a clothing store</span></label>
+<label><input type="radio" name="q7" value="2"> <span>C. At a museum</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="8" data-answer="0" data-explanation="The notice gives information that is typical of this place."><p><b>8.</b> PLEASE TURN OFF YOUR CELL PHONE DURING THE PERFORMANCE.</p>
+<label><input type="radio" name="q8" value="0"> <span>A. At a theater</span></label>
+<label><input type="radio" name="q8" value="1"> <span>B. At a supermarket</span></label>
+<label><input type="radio" name="q8" value="2"> <span>C. At a gym</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="9" data-answer="0" data-explanation="The notice gives information that is typical of this place."><p><b>9.</b> CHECK IN 3:00 P.M. — CHECK OUT 11:00 A.M.</p>
+<label><input type="radio" name="q9" value="0"> <span>A. At a hotel</span></label>
+<label><input type="radio" name="q9" value="1"> <span>B. At a pharmacy</span></label>
+<label><input type="radio" name="q9" value="2"> <span>C. At a library</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="10" data-answer="0" data-explanation="The notice gives information that is typical of this place."><p><b>10.</b> FRESH SANDWICHES, SOUPS AND SALADS. ORDER AT THE COUNTER.</p>
+<label><input type="radio" name="q10" value="0"> <span>A. At a restaurant or café</span></label>
+<label><input type="radio" name="q10" value="1"> <span>B. At a sports center</span></label>
+<label><input type="radio" name="q10" value="2"> <span>C. At an airport gate</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+</section>
+<section class="part"><h2>PART 3. COMMUNICATIVE COMPETENCE</h2><p class="instructions">Read each short conversation. Choose the most appropriate response.</p>
+<div class="question" data-q="11" data-answer="1" data-explanation="The present continuous describes an activity happening now or an arranged activity."><p><b>11.</b> A: What are you doing this afternoon? B: ____</p>
+<label><input type="radio" name="q11" value="0"> <span>A. I went shopping yesterday.</span></label>
+<label><input type="radio" name="q11" value="1"> <span>B. I&#x27;m meeting a friend at the park.</span></label>
+<label><input type="radio" name="q11" value="2"> <span>C. I usually get up at seven.</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="12" data-answer="0" data-explanation="Frequency questions ask how often an activity happens."><p><b>12.</b> A: How often do you go swimming? B: ____</p>
+<label><input type="radio" name="q12" value="0"> <span>A. Twice a week.</span></label>
+<label><input type="radio" name="q12" value="1"> <span>B. At the swimming pool.</span></label>
+<label><input type="radio" name="q12" value="2"> <span>C. I went last summer.</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="13" data-answer="1" data-explanation="The question asks for the price, so an amount of money is the relevant response."><p><b>13.</b> A: How much are these sneakers? B: ____</p>
+<label><input type="radio" name="q13" value="0"> <span>A. They&#x27;re very comfortable.</span></label>
+<label><input type="radio" name="q13" value="1"> <span>B. They&#x27;re fifty dollars.</span></label>
+<label><input type="radio" name="q13" value="2"> <span>C. They&#x27;re next to the door.</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="14" data-answer="0" data-explanation="A follow-up question about the experience is a natural response to news about a visit."><p><b>14.</b> A: I visited Paris last year. B: ____</p>
+<label><input type="radio" name="q14" value="0"> <span>A. Really? What was it like?</span></label>
+<label><input type="radio" name="q14" value="1"> <span>B. What are you doing now?</span></label>
+<label><input type="radio" name="q14" value="2"> <span>C. How much is it?</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="15" data-answer="2" data-explanation="“Would you like…?” is an offer; “Yes, just a little” accepts it politely."><p><b>15.</b> A: Would you like some more rice? B: ____</p>
+<label><input type="radio" name="q15" value="0"> <span>A. Yes, please. It was yesterday.</span></label>
+<label><input type="radio" name="q15" value="1"> <span>B. No, I don&#x27;t have any plans.</span></label>
+<label><input type="radio" name="q15" value="2"> <span>C. Yes, just a little, thanks.</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+</section>
+<section class="part"><h2>PART 4. GRAMMATICAL COMPETENCE</h2><p class="instructions">Read the text and choose the correct option (A, B or C) for each blank.</p>
+<div class="reading"><b>A DAY OUT</b><p>Hi, Sam! I&#x27;m having a great day in the city. The weather (1) _____ sunny, so my friends and I (2) _____ walking around downtown. We usually (3) _____ the bus, but today we&#x27;re exploring on foot. Right now, my sister (4) _____ some photos. Later, we (5) _____ visit the history museum. Yesterday, we (6) _____ a boat tour, and it was wonderful. There (7) _____ many people at the harbor. We didn&#x27;t have (8) _____ time to visit everything.</p></div>
+<div class="question" data-q="16" data-answer="0" data-explanation="Use “is” with the singular subject “weather.”"><p><b>16.</b> Blank 1</p>
+<label><input type="radio" name="q16" value="0"> <span>A. is</span></label>
+<label><input type="radio" name="q16" value="1"> <span>B. are</span></label>
+<label><input type="radio" name="q16" value="2"> <span>C. be</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="17" data-answer="2" data-explanation="Use “are” with the plural subject “my friends.”"><p><b>17.</b> Blank 2</p>
+<label><input type="radio" name="q17" value="0"> <span>A. am</span></label>
+<label><input type="radio" name="q17" value="1"> <span>B. is</span></label>
+<label><input type="radio" name="q17" value="2"> <span>C. are</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="18" data-answer="0" data-explanation="Use the base form after “usually” with the plural subject “we.”"><p><b>18.</b> Blank 3</p>
+<label><input type="radio" name="q18" value="0"> <span>A. take</span></label>
+<label><input type="radio" name="q18" value="1"> <span>B. takes</span></label>
+<label><input type="radio" name="q18" value="2"> <span>C. taking</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="19" data-answer="1" data-explanation="The present continuous describes what is happening now."><p><b>19.</b> Blank 4</p>
+<label><input type="radio" name="q19" value="0"> <span>A. take</span></label>
+<label><input type="radio" name="q19" value="1"> <span>B. is taking</span></label>
+<label><input type="radio" name="q19" value="2"> <span>C. took</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="20" data-answer="0" data-explanation="“Are going to” expresses a future plan."><p><b>20.</b> Blank 5</p>
+<label><input type="radio" name="q20" value="0"> <span>A. are going to</span></label>
+<label><input type="radio" name="q20" value="1"> <span>B. go</span></label>
+<label><input type="radio" name="q20" value="2"> <span>C. went</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="21" data-answer="1" data-explanation="“Took” is the simple past of “take.”"><p><b>21.</b> Blank 6</p>
+<label><input type="radio" name="q21" value="0"> <span>A. take</span></label>
+<label><input type="radio" name="q21" value="1"> <span>B. took</span></label>
+<label><input type="radio" name="q21" value="2"> <span>C. taking</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="22" data-answer="1" data-explanation="Use “were” with the plural noun “people.”"><p><b>22.</b> Blank 7</p>
+<label><input type="radio" name="q22" value="0"> <span>A. was</span></label>
+<label><input type="radio" name="q22" value="1"> <span>B. were</span></label>
+<label><input type="radio" name="q22" value="2"> <span>C. is</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="23" data-answer="1" data-explanation="“Time” is uncountable, so use “much” in a negative sentence."><p><b>23.</b> Blank 8</p>
+<label><input type="radio" name="q23" value="0"> <span>A. many</span></label>
+<label><input type="radio" name="q23" value="1"> <span>B. much</span></label>
+<label><input type="radio" name="q23" value="2"> <span>C. a few</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+</section>
+<section class="part"><h2>PART 5. LITERAL READING COMPREHENSION</h2><p class="instructions">Read the text. Then answer the questions using information stated directly in the text.</p>
+<div class="reading"><b>A WEEKEND IN TORONTO</b><p>Last Saturday, Daniel and his cousin Emma spent the day in Toronto. They arrived by train at 9:00 a.m. First, they visited Casa Loma and took a guided tour. At noon, they had lunch at a small restaurant on Spadina Avenue. In the afternoon, they went to the Art Gallery of Ontario. Emma bought a postcard in the gift shop. Before returning home, they walked along the Harbourfront and watched boats on Lake Ontario. They caught the 7:15 p.m. train home.</p></div>
+<div class="question" data-q="24" data-answer="1" data-explanation="The correct answer is stated directly in the reading passage."><p><b>24.</b> How did Daniel and Emma travel to Toronto?</p>
+<label><input type="radio" name="q24" value="0"> <span>A. By bus</span></label>
+<label><input type="radio" name="q24" value="1"> <span>B. By train</span></label>
+<label><input type="radio" name="q24" value="2"> <span>C. By car</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="25" data-answer="0" data-explanation="The correct answer is stated directly in the reading passage."><p><b>25.</b> What time did they arrive?</p>
+<label><input type="radio" name="q25" value="0"> <span>A. 9:00 a.m.</span></label>
+<label><input type="radio" name="q25" value="1"> <span>B. 9:30 a.m.</span></label>
+<label><input type="radio" name="q25" value="2"> <span>C. 10:00 a.m.</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="26" data-answer="2" data-explanation="The correct answer is stated directly in the reading passage."><p><b>26.</b> What did they visit first?</p>
+<label><input type="radio" name="q26" value="0"> <span>A. The Art Gallery of Ontario</span></label>
+<label><input type="radio" name="q26" value="1"> <span>B. The Harbourfront</span></label>
+<label><input type="radio" name="q26" value="2"> <span>C. Casa Loma</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="27" data-answer="0" data-explanation="The correct answer is stated directly in the reading passage."><p><b>27.</b> Where did they have lunch?</p>
+<label><input type="radio" name="q27" value="0"> <span>A. On Spadina Avenue</span></label>
+<label><input type="radio" name="q27" value="1"> <span>B. At the art gallery</span></label>
+<label><input type="radio" name="q27" value="2"> <span>C. At the train station</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="28" data-answer="1" data-explanation="The correct answer is stated directly in the reading passage."><p><b>28.</b> What did Emma buy?</p>
+<label><input type="radio" name="q28" value="0"> <span>A. A book</span></label>
+<label><input type="radio" name="q28" value="1"> <span>B. A postcard</span></label>
+<label><input type="radio" name="q28" value="2"> <span>C. A souvenir shirt</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="29" data-answer="1" data-explanation="The correct answer is stated directly in the reading passage."><p><b>29.</b> What did they watch at the Harbourfront?</p>
+<label><input type="radio" name="q29" value="0"> <span>A. People playing soccer</span></label>
+<label><input type="radio" name="q29" value="1"> <span>B. Boats on Lake Ontario</span></label>
+<label><input type="radio" name="q29" value="2"> <span>C. A music performance</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="30" data-answer="2" data-explanation="The correct answer is stated directly in the reading passage."><p><b>30.</b> What time did they catch the train home?</p>
+<label><input type="radio" name="q30" value="0"> <span>A. 6:15 p.m.</span></label>
+<label><input type="radio" name="q30" value="1"> <span>B. 7:00 p.m.</span></label>
+<label><input type="radio" name="q30" value="2"> <span>C. 7:15 p.m.</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+</section>
+<section class="part"><h2>PART 6. INFERENTIAL READING COMPREHENSION</h2><p class="instructions">Read the text. Choose the best answer. The answers require you to infer meaning from the information.</p>
+<div class="reading"><b>A BUSY WEEK</b><p>Maya works at a sports store from Monday to Friday. This week, she is also taking an evening English course, so she has very little free time. On Wednesday, her friend Leo invited her to play volleyball, but Maya said she couldn&#x27;t go because she had a class test the next morning. She plans to meet Leo on Saturday. They want to exercise outdoors if the weather is good. Maya enjoys her job, but she hopes to have a quieter schedule next week.</p></div>
+<div class="question" data-q="31" data-answer="1" data-explanation="This answer follows from combining details in the passage; it is not stated word for word."><p><b>31.</b> Why did Maya refuse Leo&#x27;s invitation on Wednesday?</p>
+<label><input type="radio" name="q31" value="0"> <span>A. She doesn&#x27;t like volleyball.</span></label>
+<label><input type="radio" name="q31" value="1"> <span>B. She had to prepare for a test.</span></label>
+<label><input type="radio" name="q31" value="2"> <span>C. She was working at the sports store.</span></label>
+<label><input type="radio" name="q31" value="3"> <span>D. The weather was bad.</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="32" data-answer="2" data-explanation="This answer follows from combining details in the passage; it is not stated word for word."><p><b>32.</b> What can we infer about Maya&#x27;s week?</p>
+<label><input type="radio" name="q32" value="0"> <span>A. It is less busy than usual.</span></label>
+<label><input type="radio" name="q32" value="1"> <span>B. She has no responsibilities.</span></label>
+<label><input type="radio" name="q32" value="2"> <span>C. She has several commitments.</span></label>
+<label><input type="radio" name="q32" value="3"> <span>D. She is on vacation.</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="33" data-answer="1" data-explanation="This answer follows from combining details in the passage; it is not stated word for word."><p><b>33.</b> Why do Maya and Leo plan to exercise outdoors on Saturday?</p>
+<label><input type="radio" name="q33" value="0"> <span>A. They prefer staying inside.</span></label>
+<label><input type="radio" name="q33" value="1"> <span>B. They will decide depending on the weather.</span></label>
+<label><input type="radio" name="q33" value="2"> <span>C. The sports store is closed.</span></label>
+<label><input type="radio" name="q33" value="3"> <span>D. Maya has an English test on Saturday.</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="34" data-answer="0" data-explanation="This answer follows from combining details in the passage; it is not stated word for word."><p><b>34.</b> How does Maya probably feel about her current schedule?</p>
+<label><input type="radio" name="q34" value="0"> <span>A. She would like to have more free time.</span></label>
+<label><input type="radio" name="q34" value="1"> <span>B. She wants to take another evening course.</span></label>
+<label><input type="radio" name="q34" value="2"> <span>C. She dislikes all sports.</span></label>
+<label><input type="radio" name="q34" value="3"> <span>D. She plans to leave her job immediately.</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="35" data-answer="1" data-explanation="This answer follows from combining details in the passage; it is not stated word for word."><p><b>35.</b> What does the text suggest about Maya and Leo?</p>
+<label><input type="radio" name="q35" value="0"> <span>A. They are coworkers who never meet.</span></label>
+<label><input type="radio" name="q35" value="1"> <span>B. They enjoy spending time and doing activities together.</span></label>
+<label><input type="radio" name="q35" value="2"> <span>C. They are preparing for the same test.</span></label>
+<label><input type="radio" name="q35" value="3"> <span>D. They live in different countries.</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+</section>
+<section class="part"><h2>PART 7. GRAMMATICAL AND LEXICAL COMPETENCE</h2><p class="instructions">Read the text and choose the correct option (A, B, C or D) for each blank.</p>
+<div class="reading"><b>A DINNER INVITATION</b><p>Last Friday, my friends invited me to dinner at a new restaurant. I (1) _____ there at 7:00 p.m. The restaurant was (2) _____, but the food was excellent. I ordered (3) _____ soup and a chicken sandwich. My friend asked, “Would you like (4) _____ water?” I said yes, please. The waiter brought two (5) _____ of water. After dinner, we talked (6) _____ our vacation plans. My friend wants (7) _____ to Canada next summer. I went to Canada once, and I (8) _____ a wonderful time. We decided to meet (9) _____ Saturday to look at travel websites. I hope the weather (10) _____ nice when we travel.</p></div>
+<div class="question" data-q="36" data-answer="1" data-explanation="The simple past “arrived” describes a completed event in the past."><p><b>36.</b> Blank 1</p>
+<label><input type="radio" name="q36" value="0"> <span>A. arrive</span></label>
+<label><input type="radio" name="q36" value="1"> <span>B. arrived</span></label>
+<label><input type="radio" name="q36" value="2"> <span>C. arriving</span></label>
+<label><input type="radio" name="q36" value="3"> <span>D. arrives</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="37" data-answer="0" data-explanation="“Crowded” describes a place with many people."><p><b>37.</b> Blank 2</p>
+<label><input type="radio" name="q37" value="0"> <span>A. crowded</span></label>
+<label><input type="radio" name="q37" value="1"> <span>B. freezing</span></label>
+<label><input type="radio" name="q37" value="2"> <span>C. cheaply</span></label>
+<label><input type="radio" name="q37" value="3"> <span>D. quietly</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="38" data-answer="0" data-explanation="Use “a” before the consonant sound in “soup.”"><p><b>38.</b> Blank 3</p>
+<label><input type="radio" name="q38" value="0"> <span>A. a</span></label>
+<label><input type="radio" name="q38" value="1"> <span>B. an</span></label>
+<label><input type="radio" name="q38" value="2"> <span>C. some</span></label>
+<label><input type="radio" name="q38" value="3"> <span>D. any</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="39" data-answer="0" data-explanation="“Some” is used in polite offers and requests."><p><b>39.</b> Blank 4</p>
+<label><input type="radio" name="q39" value="0"> <span>A. some</span></label>
+<label><input type="radio" name="q39" value="1"> <span>B. any</span></label>
+<label><input type="radio" name="q39" value="2"> <span>C. many</span></label>
+<label><input type="radio" name="q39" value="3"> <span>D. a few</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="40" data-answer="1" data-explanation="The plural form of “glass” is “glasses.”"><p><b>40.</b> Blank 5</p>
+<label><input type="radio" name="q40" value="0"> <span>A. glass</span></label>
+<label><input type="radio" name="q40" value="1"> <span>B. glasses</span></label>
+<label><input type="radio" name="q40" value="2"> <span>C. glasseses</span></label>
+<label><input type="radio" name="q40" value="3"> <span>D. glass of</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="41" data-answer="0" data-explanation="“Talk about” is the correct expression for discussing a topic."><p><b>41.</b> Blank 6</p>
+<label><input type="radio" name="q41" value="0"> <span>A. about</span></label>
+<label><input type="radio" name="q41" value="1"> <span>B. at</span></label>
+<label><input type="radio" name="q41" value="2"> <span>C. for</span></label>
+<label><input type="radio" name="q41" value="3"> <span>D. between</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="42" data-answer="2" data-explanation="After “wants,” use the infinitive with “to.”"><p><b>42.</b> Blank 7</p>
+<label><input type="radio" name="q42" value="0"> <span>A. go</span></label>
+<label><input type="radio" name="q42" value="1"> <span>B. going</span></label>
+<label><input type="radio" name="q42" value="2"> <span>C. to go</span></label>
+<label><input type="radio" name="q42" value="3"> <span>D. went</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="43" data-answer="2" data-explanation="“Had” is the simple past of “have.”"><p><b>43.</b> Blank 8</p>
+<label><input type="radio" name="q43" value="0"> <span>A. have</span></label>
+<label><input type="radio" name="q43" value="1"> <span>B. has</span></label>
+<label><input type="radio" name="q43" value="2"> <span>C. had</span></label>
+<label><input type="radio" name="q43" value="3"> <span>D. having</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="44" data-answer="1" data-explanation="Use “on” with days of the week."><p><b>44.</b> Blank 9</p>
+<label><input type="radio" name="q44" value="0"> <span>A. in</span></label>
+<label><input type="radio" name="q44" value="1"> <span>B. on</span></label>
+<label><input type="radio" name="q44" value="2"> <span>C. at</span></label>
+<label><input type="radio" name="q44" value="3"> <span>D. from</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+<div class="question" data-q="45" data-answer="0" data-explanation="The singular subject “weather” takes “is.”"><p><b>45.</b> Blank 10</p>
+<label><input type="radio" name="q45" value="0"> <span>A. is</span></label>
+<label><input type="radio" name="q45" value="1"> <span>B. was</span></label>
+<label><input type="radio" name="q45" value="2"> <span>C. are</span></label>
+<label><input type="radio" name="q45" value="3"> <span>D. be</span></label>
+<div class="inline-feedback" aria-live="polite"></div></div>
+</section>
+<div class="controls"><button id="submit" onclick="finish(false)">SUBMIT TEST</button><span id="answered" class="small">0 of 45 answered</span></div>
+<div class="result" id="result"></div>
+</div>
+<script>
+let remaining=3600, finished=false;
+const timeEl=document.getElementById('time');
+function updateAnswered(){
+ const n=[...document.querySelectorAll('.question')].filter(q=>{
+   const sel=q.querySelector('select'); return sel ? sel.value!=='' : !!q.querySelector('input[type=radio]:checked');
+ }).length;
+ document.getElementById('answered').textContent=n+' of 45 answered';
+}
+document.querySelectorAll('input[type=radio], select').forEach(x=>x.addEventListener('change',updateAnswered));
+const clock=setInterval(()=>{
+ if(finished)return;
+ remaining--;
+ let m=Math.floor(remaining/60),s=remaining%60;
+ timeEl.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+ if(remaining<=0)finish(true);
+},1000);
+
+function finish(auto){
+ if(finished)return;
+ const answered=[...document.querySelectorAll('.question')].filter(q=>{
+   const sel=q.querySelector('select'); return sel ? sel.value!=='' : !!q.querySelector('input[type=radio]:checked');
+ }).length;
+ if(!auto && !confirm('Submit the test now? You answered '+answered+' of 45 questions.'+(answered<45?' Unanswered questions will be marked as incorrect.':'')))return;
+ finished=true;clearInterval(clock);
+ let score=0, review='';
+ document.querySelectorAll('.question').forEach(q=>{
+   const n=Number(q.dataset.q), correct=Number(q.dataset.answer);
+   const select=q.querySelector('select');
+   const chosen=select ? (select.value===''?-1:Number(select.value)) : (q.querySelector('input[type=radio]:checked') ? Number(q.querySelector('input[type=radio]:checked').value) : -1);
+   const ok=chosen===correct;
+   if(ok)score++;
+   const labels=select ? [...select.options].slice(1).map(o=>o.textContent) : [...q.querySelectorAll('label span')].map(x=>x.textContent);
+   const correctText=labels[correct] || '';
+   const chosenText=chosen>=0 ? labels[chosen] : 'Not answered';
+   const prompt=q.querySelector('p').innerText.replace(/^\d+\.\s*/,'');
+   const cls=ok?'correct':'incorrect';
+   const status=ok?'Correct':(chosen<0?'Incorrect (not answered)':'Incorrect');
+   // Mark the answer directly in the question, including the selected wrong option and correct option.
+   if(select){
+      [...select.options].forEach((o,i)=>{
+        if(i===0)return;
+        if(i-1===correct)o.textContent='✓ '+o.textContent;
+        if(i-1===chosen && !ok)o.textContent='✗ '+o.textContent;
+      });
+      select.disabled=true;
+      select.classList.add(ok?'option-correct':'option-wrong');
+   } else {
+      q.querySelectorAll('label').forEach((lab,i)=>{
+        const inp=lab.querySelector('input'); inp.disabled=true;
+        if(i===correct)lab.classList.add('option-correct');
+        if(i===chosen && !ok)lab.classList.add('option-wrong');
+      });
+   }
+   const feedback=q.querySelector('.inline-feedback');
+   const exp=q.dataset.explanation || '';
+   if(ok){
+      feedback.className='feedback good';
+      feedback.innerHTML='✓ Correct answer.';
+   } else {
+      feedback.className='feedback bad';
+      feedback.innerHTML=(chosen<0?'<b>✗ Incorrect: this question was not answered.</b>':'<b>✗ Your answer: '+escapeHtml(chosenText)+'</b>')+'<br><span class="answer-correct"><b>Correct answer: '+escapeHtml(correctText)+'</b></span>'+(exp?' <br>'+escapeHtml(exp):'');
+   }
+   review+='<article class="review-item '+cls+'"><div class="review-head"><b>Question '+n+'</b><span class="status">'+status+'</span></div><p>'+escapeHtml(prompt)+'</p><p class="'+(ok?'answer-correct':'answer-wrong')+'">'+(chosen<0?'Incorrect: this question was not answered.':'Your answer: '+escapeHtml(chosenText))+'</p>'+(!ok?'<p class="answer-correct">Correct answer: '+escapeHtml(correctText)+'</p>':'')+'</article>';
+ });
+ const grade=(1+(score/45)*4).toFixed(1);
+ document.getElementById('submit').disabled=true;
+ const r=document.getElementById('result'); r.style.display='block';
+ r.innerHTML='<h2>YOUR TEST RESULTS</h2><p><b>Student:</b> '+escapeHtml(document.getElementById('student').value||'Not provided')+'</p>'+
+ '<div class="score-panel"><div class="score">'+grade+' / 5.0</div><div class="score-meta">Final grade<br>'+(auto?'Time expired; test submitted automatically.':'Test submitted successfully.')+'</div></div>'+
+ '<div class="stats"><div class="stat"><strong>'+score+'/45</strong><span>Correct answers</span></div><div class="stat"><strong>'+(45-score)+'/45</strong><span>Incorrect or unanswered</span></div><div class="stat"><strong>'+answered+'/45</strong><span>Questions answered</span></div></div>'+
+ ''+
+ '<div class="review-title">RESULT SUMMARY</div>'+review+
+ '<div class="actions"><button onclick="window.print()">PRINT RESULTS</button><button class="secondary" onclick="window.scrollTo({top:0,behavior:\'smooth\'})">BACK TO TOP</button></div>';
+ r.scrollIntoView({behavior:'smooth'});
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+</script></body></html>
