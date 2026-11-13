@@ -392,7 +392,7 @@ function finish(auto){
  const answered=[...document.querySelectorAll('.question')].filter(q=>{
    const sel=q.querySelector('select'); return sel ? sel.value!=='' : !!q.querySelector('input[type=radio]:checked');
  }).length;
- if(!auto && !confirm('Submit the test now? You answered '+answered+' of 45 questions.'))return;
+ if(!auto && !confirm('Submit the test now? You answered '+answered+' of 45 questions.'+(answered<45?' Unanswered questions will be marked as incorrect.':'')))return;
  finished=true;clearInterval(clock);
  let score=0, review='';
  document.querySelectorAll('.question').forEach(q=>{
@@ -405,8 +405,8 @@ function finish(auto){
    const correctText=labels[correct] || '';
    const chosenText=chosen>=0 ? labels[chosen] : 'Not answered';
    const prompt=q.querySelector('p').innerText.replace(/^\d+\.\s*/,'');
-   const cls=ok?'correct':(chosen<0?'unanswered':'incorrect');
-   const status=ok?'Correct':(chosen<0?'Not answered':'Incorrect');
+   const cls=ok?'correct':'incorrect';
+   const status=ok?'Correct':(chosen<0?'Incorrect (not answered)':'Incorrect');
    // Mark the answer directly in the question, including the selected wrong option and correct option.
    if(select){
       [...select.options].forEach((o,i)=>{
@@ -415,7 +415,7 @@ function finish(auto){
         if(i-1===chosen && !ok)o.textContent='✗ '+o.textContent;
       });
       select.disabled=true;
-      select.classList.add(ok?'option-correct':(chosen<0?'':'option-wrong'));
+      select.classList.add(ok?'option-correct':'option-wrong');
    } else {
       q.querySelectorAll('label').forEach((lab,i)=>{
         const inp=lab.querySelector('input'); inp.disabled=true;
@@ -430,9 +430,9 @@ function finish(auto){
       feedback.innerHTML='✓ Correct answer.';
    } else {
       feedback.className='feedback bad';
-      feedback.innerHTML=(chosen<0?'<b>No answer selected.</b>':'<b>✗ Your answer: '+escapeHtml(chosenText)+'</b>')+'<br><span class="answer-correct"><b>Correct answer: '+escapeHtml(correctText)+'</b></span>'+(exp?' <br>'+escapeHtml(exp):'');
+      feedback.innerHTML=(chosen<0?'<b>✗ Incorrect: this question was not answered.</b>':'<b>✗ Your answer: '+escapeHtml(chosenText)+'</b>')+'<br><span class="answer-correct"><b>Correct answer: '+escapeHtml(correctText)+'</b></span>'+(exp?' <br>'+escapeHtml(exp):'');
    }
-   review+='<article class="review-item '+cls+'"><div class="review-head"><b>Question '+n+'</b><span class="status">'+status+'</span></div><p>'+escapeHtml(prompt)+'</p><p class="'+(ok?'answer-correct':'answer-wrong')+'">Your answer: '+escapeHtml(chosenText)+'</p>'+(!ok?'<p class="answer-correct">Correct answer: '+escapeHtml(correctText)+'</p>':'')+'</article>';
+   review+='<article class="review-item '+cls+'"><div class="review-head"><b>Question '+n+'</b><span class="status">'+status+'</span></div><p>'+escapeHtml(prompt)+'</p><p class="'+(ok?'answer-correct':'answer-wrong')+'">'+(chosen<0?'Incorrect: this question was not answered.':'Your answer: '+escapeHtml(chosenText))+'</p>'+(!ok?'<p class="answer-correct">Correct answer: '+escapeHtml(correctText)+'</p>':'')+'</article>';
  });
  const grade=(1+(score/45)*4).toFixed(1);
  document.getElementById('submit').disabled=true;
